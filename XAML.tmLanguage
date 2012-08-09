@@ -1,0 +1,263 @@
+<.xaml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>xaml</string>
+	</array>
+	<key>foldingStartMarker</key>
+	<string>^\s*(&lt;[^!?%/](?!.+?(/&gt;|&lt;/.+?&gt;))|&lt;[!%]--(?!.+?--%?&gt;)|&lt;%[!]?(?!.+?%&gt;))</string>
+	<key>foldingStopMarker</key>
+	<string>^\s*(&lt;/[^&gt;]+&gt;|[/%]&gt;|--&gt;)\s*$</string>
+	<key>keyEquivalent</key>
+	<string>^~X</string>
+	<key>name</key>
+	<string>XAML</string>
+	<key>patterns</key>
+	<array>
+
+		<!-- Comments -->
+		<dict>
+			<key>begin</key>
+			<string>&lt;[!%]--</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.xaml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>--%?&gt;</string>
+			<key>name</key>
+			<string>comment.block.xaml</string>
+		</dict>
+		
+		<!-- All -->
+		<dict>
+			<key>begin</key>
+			<string>(&lt;/?)(?:([-_a-zA-Z0-9]+)((\.)))?([-_a-zA-Z0-9:.]+)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.begin.xaml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xaml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xaml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xaml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xaml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(/?&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.end.xaml</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.tag.xaml</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#tagStuff</string>
+				</dict>
+			</array>
+		</dict>
+
+
+		<!-- CDATA -->
+		<dict>
+			<key>begin</key>
+			<string>&lt;!\[CDATA\[</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.xaml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>]]&gt;</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.xaml</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.unquoted.cdata.xaml</string>
+		</dict>
+	</array>
+
+	<key>repository</key>
+	<dict>
+		
+		<key>bindingValue</key>
+		<dict>
+			<key>begin</key>
+			<string> (?:([-_a-zA-Z0-9]+)((\.)))?([-_a-zA-Z0-9:=]+)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.other.attribute-name.xaml</string>
+				</dict>
+			</dict>
+
+			<key>end</key>
+			<string> </string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.binding.end.xaml</string>
+				</dict>
+			</dict>
+
+			<key>name</key>
+			<string>entity.other.attribute-name.xaml</string>
+		</dict>
+
+
+		<key>binding</key>
+		<dict>
+			<key>begin</key>
+			<string>{x:|{B|{D|{S|{R</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.binding.begin.xaml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>}+</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.binding.end.xaml</string>
+				</dict>
+			</dict>
+
+			<key>name</key>
+			<string>constant.character.binding.xaml</string>
+
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#bindingValue</string>
+				</dict>
+			</array>
+		</dict>
+
+		<key>doublequotedString</key>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.xaml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>"</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.xaml</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.double.xaml</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#binding</string>
+				</dict>
+			</array>
+		</dict>
+
+		<key>tagStuff</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.namespace.xaml</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.xaml</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.namespace.xaml</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.localname.xaml</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string> (?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9.]+)=</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#doublequotedString</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	
+	<key>scopeName</key>
+	<string>source.xaml</string>
+	<key>uuid</key>
+	<string>BE22CE2E-AA79-4AB2-BB51-302773A79E5E</string>
+</dict>
+</plist>
